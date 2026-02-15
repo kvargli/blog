@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Listák · TE BLOGOD</title>
+  <meta name="description" content="Letisztult, sötét, minimál blog." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1><a href="index.html">TE BLOGOD</a></h1>
+        <p class="tagline">minimál jegyzetek, fotók, listák</p>
+      </div>
+      <nav aria-label="Fő navigáció">
+        <a class="navlink" href="index.html" >Bejegyzések</a>
+        <a class="navlink" href="photos.html" >Fotók</a>
+        <a class="navlink" href="lists.html" aria-current="page">Listák</a>
+        <a class="navlink" href="about.html" >Info</a>
+      </nav>
+    </header>
+
+    
+<section class="card">
+  <div class="meta">Listák</div>
+  <h2 style="margin:.2rem 0 0;font-family:var(--mono);font-size:1.05rem;">Megnyitható listák (details/summary)</h2>
+  <p class="post-excerpt">JS nélkül is működik: kattintasz és kinyílik.</p>
+</section>
+
+<details class="details">
+  <summary>Filmek, amiket újranéznék</summary>
+  <ul>
+    <li>Film A</li>
+    <li>Film B</li>
+    <li>Film C</li>
+  </ul>
+</details>
+
+<details class="details">
+  <summary>Könyvek / esszék</summary>
+  <ul>
+    <li>Book 1</li>
+    <li>Book 2</li>
+  </ul>
+</details>
+
+<details class="details">
+  <summary>Projektek / ötletek</summary>
+  <ul>
+    <li>Hangos DIY cucc</li>
+    <li>Blog redesign note</li>
+  </ul>
+</details>
+
+<p class="meta">Ezt később lehet adatból generálni (JSON/YAML/Markdown), de indulásnak tökéletes.</p>
+
+
+    <footer>
+      <div>© <span id="y"></span> TE BLOGOD · <span class="code">statikus starter</span></div>
+    </footer>
+  </div>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
