@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>blog</title>
+  <meta name="description" content="naplózás" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1><a href="index.html">blog</a></h1>
+        <p class="tagline"></p>
+      </div>
+      <nav aria-label="Fő navigáció">
+        <a class="navlink" href="index.html" aria-current="page">entries</a>
+        <a class="navlink" href="photos.html" >photos</a>
+        <a class="navlink" href="lists.html" >lists</a>
+        <a class="navlink" href="about.html" >cv</a>
+      </nav>
+    </header>
+
+    
+<section class="card">
+  <div class="meta">Info</div>
+  <h2 style="margin:.2rem 0 0;font-family:var(--mono);font-size:1.05rem;">Rövid bemutatkozás</h2>
+  <p>Ide jön 3-6 sor: ki vagy, miről szól a blog, hogyan lehet elérni.</p>
+  <p class="meta">Kapcsolat: <a href="mailto:hello@example.com">hello@example.com</a></p>
+</section>
+
+<hr />
+
+<section class="card">
+  <h3 style="margin:0 0 .4rem;font-family:var(--mono);font-size:1rem;">Hogyan bővítsd?</h3>
+  <ol style="margin:.2rem 0 0; padding-left:1.1rem;">
+    <li>Új poszt: másold a <span class="code">post-sample.html</span>-t és írd át.</li>
+    <li>Új fotógyűjtemény: csinálj egy új <span class="code">photos-collection-*.html</span>-t.</li>
+    <li>Új lista: a <span class="code">&lt;details&gt;</span> blokkot másold.</li>
+  </ol>
+</section>
+
+
+    <footer>
+      <div>© <span id="y"></span> TE BLOGOD · <span class="code">statikus starter</span></div>
+    </footer>
+  </div>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
