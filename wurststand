@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>blog</title>
+  <meta name="description" content="naplózás" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1><a href="index.html">blog</a></h1>
+        <p class="tagline"></p>
+      </div>
+      <nav aria-label="Fő navigáció">
+        <a class="navlink" href="index.html" >entries</a>
+        <a class="navlink" href="photos.html" aria-current="page">photos</a>
+        <a class="navlink" href="lists.html" >lists</a>
+        <a class="navlink" href="about.html" >cv</a>
+      </nav>
+    </header>
+
+    
+<section class="album">
+  <img src="fotokphotos/wurst4.jpg" alt="000039340033_1" loading="lazy" />
+  <img src="fotokphotos/wurst3.jpg" alt="000039340028_1" loading="lazy" />
+  <img src="fotokphotos/wurst2.jpg" alt="000039340022_1" loading="lazy" />
+  <img src="fotokphotos/wurst1.jpg" alt="000039340021_1" loading="lazy" />
+
+</section>
+
+
+
+
+<p class="meta"><a href="photos.html">← back</a></p>
+
+
+
+    <footer>
+      <div>© <span id="y"></span> JB · <span class="code">naplózások</span></div>
+    </footer>
+  </div>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
