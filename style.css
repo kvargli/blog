@@ -131,30 +131,32 @@ footer{
 }
 
 /* --- gallery / photos --- */
-/* --- desktop photo grid: 4 per row --- */
+/* ---- photos grid (desktop) ---- */
 .gallery{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  gap: 16px;
 }
 
 .thumb{
   border: 1px solid rgba(255,255,255,.10);
   border-radius: 12px;
   overflow: hidden;
-  background: rgba(255,255,255,.02);
+  background: rgba(0,0,0,.25);
 }
 
-/* nagy, “weboldalas” kártyák */
+/* Variáns A: egységes kártyák, szép rács (kicsit vág) */
 .thumb img{
   width: 100%;
   display: block;
-  aspect-ratio: 4 / 3;   /* egységes méret */
-  object-fit: cover;     /* szépen vág */
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
 
+/* Ha használsz feliratot */
 .thumb .cap{
   padding: .45rem .6rem;
   font-size: .85rem;
   color: var(--muted);
 }
+
