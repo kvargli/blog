@@ -21,7 +21,7 @@ body{
 
   /* háttérkép halványan (overlay miatt) */
   background-image:
-    linear-gradient(rgba(11,11,11,0.88), rgba(11,11,11,0.88)),
+    linear-gradient(rgba(11,11,11,0.88), rgba(11,11,11,0.5)),
     url("DSC01477.jpg");
   background-size: cover;
   background-position: center;
