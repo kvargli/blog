@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>blog</title>
+  <meta name="description" content="naplózás" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1><a href="index.html">blog</a></h1>
+        <p class="tagline"></p>
+      </div>
+      <nav aria-label="Fő navigáció">
+        <a class="navlink" href="index.html" aria-current="page">entries</a>
+        <a class="navlink" href="photos.html" >photos</a>
+        <a class="navlink" href="lists.html" >lists</a>
+        <a class="navlink" href="about.html" >cv</a>
+      </nav>
+    </header>
+
+    
+<section class="card">
+  <div class="meta">2026-02-15 · 3 perc</div>
+  <h2 style="margin:.2rem 0 0;font-family:var(--mono);">Egy minta bejegyzés címe</h2>
+</section>
+
+<hr />
+
+<article class="card">
+  <p><strong>Hook:</strong> 2-3 mondatban a poszt eleje. Letisztult, kevés formázás.</p>
+  <p>Paragrafus. Paragrafus. Linkek: <a href="https://example.com">példa</a>.</p>
+  <h3 style="margin:1rem 0 .4rem;font-family:var(--mono);font-size:1rem;">Alcím</h3>
+  <p>Még egy bekezdés, és kész.</p>
+</article>
+
+<p class="meta"><a href="index.html">← vissza a bejegyzésekhez</a></p>
+
+
+    <footer>
+      <div>© <span id="y"></span> TE BLOGOD · <span class="code">statikus starter</span></div>
+    </footer>
+  </div>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
