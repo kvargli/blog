@@ -172,3 +172,14 @@ footer{
   height: auto;
   display: block;
 }
+.card{
+  color: var(--muted);
+  font-size: .92rem;
+  line-height: 1.45;
+}
+
+.card p{ margin: 0 0 .75rem; }
+.card p:last-child{ margin-bottom: 0; }
+
+.card a{ color: var(--accent); }
+
