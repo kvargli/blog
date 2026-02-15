@@ -160,3 +160,15 @@ footer{
   color: var(--muted);
 }
 
+/* --- album: one column, no frames --- */
+.album{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;           /* tér a képek között */
+}
+
+.album img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
