@@ -112,6 +112,8 @@ hr{
 .post-excerpt{
   margin:.35rem 0 0;
   color:var(--muted);
+  font-size: .92rem;   /* <- kisebb betű */
+  line-height: 1.45;   /* <- kicsit tömörebb, olvasható */
 }
 
 footer{
