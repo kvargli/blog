@@ -211,8 +211,9 @@ footer{
 }
 
 /* linkek is mutedek, hoverre zöldül */
-.mutedlist a{
-  color: var(--muted);
+.mutedlist a,
+.mutedlist a:visited{
+  color: var(--accent);
 }
 
 .mutedlist a:hover{
