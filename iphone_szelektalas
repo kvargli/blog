@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>blog</title>
+  <meta name="description" content="naplózás" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1><a href="index.html">JB's blog</a></h1>
+        <p class="tagline"></p>
+      </div>
+      <nav aria-label="Fő navigáció">
+        <a class="navlink" href="index.html">entries</a>
+        <a class="navlink" href="photos.html" aria-current="page">photos</a>
+        <a class="navlink" href="lists.html">lists</a>
+        <a class="navlink" href="about.html">cv</a>
+      </nav>
+    </header>
+
+    <section class="card">
+      <div class="meta">iphone_szelektálás</div>
+    </section>
+
+    <hr />
+
+<section class="album">
+  <img src="fotokphotos/phone/7e54917777dbe8afd65c0110a114e2c5_new.jpg" alt="7e54917777dbe8afd65c0110a114e2c5_new" loading="lazy" />
+
+  <img src="fotokphotos/phone/IMG_5031_new.jpg" alt="IMG_5031_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5034_new.jpg" alt="IMG_5034_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5041_new.jpg" alt="IMG_5041_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5042_new.jpg" alt="IMG_5042_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5072_new.jpg" alt="IMG_5072_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5091_new.jpg" alt="IMG_5091_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5093_new.jpg" alt="IMG_5093_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5094_new.jpg" alt="IMG_5094_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5097_new.jpg" alt="IMG_5097_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5106_new.jpg" alt="IMG_5106_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5256_new.jpg" alt="IMG_5256_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5265_new.jpg" alt="IMG_5265_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5275_new.jpg" alt="IMG_5275_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5447_new.jpg" alt="IMG_5447_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5450_new.jpg" alt="IMG_5450_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5488_new.jpg" alt="IMG_5488_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5492_new.jpg" alt="IMG_5492_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5510_new.jpg" alt="IMG_5510_new" loading="lazy" />
+
+  <img src="fotokphotos/phone/IMG_5530_new.jpg" alt="IMG_5530_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5676_new.jpg" alt="IMG_5676_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5677_new.jpg" alt="IMG_5677_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5684_new.jpg" alt="IMG_5684_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5694_new.jpg" alt="IMG_5694_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5699_new.jpg" alt="IMG_5699_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5705_new.jpg" alt="IMG_5705_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5715_new.jpg" alt="IMG_5715_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5723_new.jpg" alt="IMG_5723_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5725_new.jpg" alt="IMG_5725_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5731_new.jpg" alt="IMG_5731_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5736_new.jpg" alt="IMG_5736_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5737_new.jpg" alt="IMG_5737_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5738_new.jpg" alt="IMG_5738_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5753_new.jpg" alt="IMG_5753_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5802_new.jpg" alt="IMG_5802_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5823_new.jpg" alt="IMG_5823_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5851_new.jpg" alt="IMG_5851_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5855_new.jpg" alt="IMG_5855_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5867_new.jpg" alt="IMG_5867_new" loading="lazy" />
+
+  <img src="fotokphotos/phone/IMG_5871_new.jpg" alt="IMG_5871_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5873_new.jpg" alt="IMG_5873_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_5983_new.jpg" alt="IMG_5983_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6064_new.jpg" alt="IMG_6064_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6066_new.jpg" alt="IMG_6066_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6068_new.jpg" alt="IMG_6068_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6069_new.jpg" alt="IMG_6069_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6071_new.jpg" alt="IMG_6071_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6075_new.jpg" alt="IMG_6075_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6087_new.jpg" alt="IMG_6087_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6088_new.jpg" alt="IMG_6088_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6103_new.jpg" alt="IMG_6103_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6104_new.jpg" alt="IMG_6104_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6107_new.jpg" alt="IMG_6107_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6113_new.jpg" alt="IMG_6113_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6116_new.jpg" alt="IMG_6116_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6120_new.jpg" alt="IMG_6120_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6148_new.jpg" alt="IMG_6148_new" loading="lazy" />
+  <img src="fotokphotos/phone/IMG_6162_new.jpg" alt="IMG_6162_new" loading="lazy" />
+</section>
+
+    <p class="meta"><a href="photos.html">← back</a></p>
+
+    <footer>
+      <div>© <span id="y"></span> JB · <span class="code">naplózások</span></div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
