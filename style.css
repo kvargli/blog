@@ -183,3 +183,40 @@ footer{
 
 .card a{ color: var(--accent); }
 
+.details{
+  margin: .75rem 0;
+}
+
+.details > summary{
+  cursor: pointer;
+  font-family: var(--mono);
+  color: var(--accent);
+  list-style: none; /* néha segít a marker stílusnál */
+}
+
+/* a kis háromszög is zöld */
+.details > summary::marker{
+  color: var(--accent);
+}
+
+/* tételek muted */
+.mutedlist{
+  margin: .5rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+
+.mutedlist li{
+  margin: .25rem 0;
+}
+
+/* linkek is mutedek, hoverre zöldül */
+.mutedlist a{
+  color: var(--muted);
+}
+
+.mutedlist a:hover{
+  color: var(--accent2);
+}
+
+
