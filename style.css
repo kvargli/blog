@@ -219,5 +219,86 @@ footer{
 .mutedlist a:hover{
   color: var(--accent2);
 }
+/* --- planner layout --- */
+.planner-grid{
+  display: grid;
+  grid-template-columns: 1.4fr .6fr;
+  gap: 1.25rem;
+  align-items: start;
+}
 
+.calwrap iframe{
+  width: 100%;
+  height: 720px;
+}
+
+/* --- todo --- */
+.todo-form{
+  display:flex;
+  gap:.6rem;
+  margin:.5rem 0 .75rem;
+}
+
+.todo-input{
+  flex:1;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--fg);
+  padding: .45rem .6rem;
+  font-family: var(--mono);
+  border-radius: 8px;
+}
+
+.todo-btn{
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--accent);
+  padding: .45rem .7rem;
+  font-family: var(--mono);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.todo-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-item{
+  display:flex;
+  gap:.6rem;
+  align-items: center;
+  padding: .4rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.todo-text{
+  flex:1;
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+.todo-text.done{
+  text-decoration: line-through;
+  opacity: .7;
+}
+
+.todo-del{
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.todo-clear{
+  margin-top: .75rem;
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  cursor: pointer;
+  text-decoration: underline;
+}
 
