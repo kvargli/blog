@@ -46,18 +46,34 @@
       </section>
 
       <!-- TASKS -->
-      <section>
-        <div class="meta">tasks</div>
+<!-- TASKS -->
+<section>
+  <div class="meta">tasks</div>
 
-        <form id="todoForm" class="todo-form">
-          <input id="todoInput" class="todo-input" type="text" placeholder="új task..." autocomplete="off" />
-          <button class="todo-btn" type="submit">add</button>
-        </form>
+  <form id="todoForm" class="todo-form">
+    <input id="todoInput" class="todo-input" type="text" placeholder="új task..." autocomplete="off" />
+    <input id="todoDue" class="todo-due" type="date" />
+    <button class="todo-btn" type="submit">add</button>
+  </form>
 
-        <ul id="todoList" class="todo-list"></ul>
+  <div class="todo-controls">
+    <div class="todo-filters">
+      <button class="fbtn" type="button" data-filter="all" aria-pressed="true">all</button>
+      <button class="fbtn" type="button" data-filter="today" aria-pressed="false">today</button>
+      <button class="fbtn" type="button" data-filter="week" aria-pressed="false">week</button>
+      <button class="fbtn" type="button" data-filter="open" aria-pressed="false">open</button>
+      <button class="fbtn" type="button" data-filter="done" aria-pressed="false">done</button>
+    </div>
 
-        <button id="clearDone" class="todo-clear" type="button">clear done</button>
-      </section>
+    <div class="todo-sort meta">
+      sort: <span class="accent">due</span>
+    </div>
+  </div>
+
+  <ul id="todoList" class="todo-list"></ul>
+
+  <button id="clearDone" class="todo-clear" type="button">clear done</button>
+</section>
     </div>
 
     <footer>
@@ -65,82 +81,186 @@
     </footer>
   </div>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+ <script>
+  document.getElementById('y').textContent = new Date().getFullYear();
 
-    // --- simple localStorage todo ---
-    const KEY = "jb_blog_todos_v1";
-    const form = document.getElementById("todoForm");
-    const input = document.getElementById("todoInput");
-    const list = document.getElementById("todoList");
-    const clearDoneBtn = document.getElementById("clearDone");
+  // --- simple localStorage todo with due + filters + sorting ---
+  const KEY = "jb_blog_todos_v2";
 
-    function loadTodos(){
-      try { return JSON.parse(localStorage.getItem(KEY) || "[]"); }
-      catch { return []; }
+  const form = document.getElementById("todoForm");
+  const input = document.getElementById("todoInput");
+  const due = document.getElementById("todoDue");
+  const list = document.getElementById("todoList");
+  const clearDoneBtn = document.getElementById("clearDone");
+  const filterBtns = Array.from(document.querySelectorAll(".fbtn"));
+
+  let activeFilter = "all";
+
+  function loadTodos(){
+    try { return JSON.parse(localStorage.getItem(KEY) || "[]"); }
+    catch { return []; }
+  }
+  function saveTodos(todos){
+    localStorage.setItem(KEY, JSON.stringify(todos));
+  }
+
+  function todayISO(){
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    return `${yyyy}-${mm}-${dd}`;
+  }
+
+  function startOfWeekISO(){
+    // Monday-based week
+    const d = new Date();
+    const day = (d.getDay() + 6) % 7; // Mon=0..Sun=6
+    d.setDate(d.getDate() - day);
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    return `${yyyy}-${mm}-${dd}`;
+  }
+
+  function addDaysISO(iso, days){
+    const d = new Date(iso + "T00:00:00");
+    d.setDate(d.getDate() + days);
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    return `${yyyy}-${mm}-${dd}`;
+  }
+
+  function isOverdue(t){
+    if(!t.due || t.done) return false;
+    return t.due < todayISO();
+  }
+
+  function applyFilter(todos){
+    const t0 = todayISO();
+    const w0 = startOfWeekISO();
+    const w1 = addDaysISO(w0, 7); // exclusive
+
+    switch(activeFilter){
+      case "today":
+        return todos.filter(t => t.due === t0);
+      case "week":
+        return todos.filter(t => t.due && t.due >= w0 && t.due < w1);
+      case "open":
+        return todos.filter(t => !t.done);
+      case "done":
+        return todos.filter(t => !!t.done);
+      default:
+        return todos;
     }
+  }
 
-    function saveTodos(todos){
-      localStorage.setItem(KEY, JSON.stringify(todos));
-    }
-
-    function render(){
-      const todos = loadTodos();
-      list.innerHTML = "";
-      todos.forEach((t, idx) => {
-        const li = document.createElement("li");
-        li.className = "todo-item";
-
-        const cb = document.createElement("input");
-        cb.type = "checkbox";
-        cb.checked = !!t.done;
-        cb.addEventListener("change", () => {
-          const next = loadTodos();
-          next[idx].done = cb.checked;
-          saveTodos(next);
-          render();
-        });
-
-        const span = document.createElement("span");
-        span.className = "todo-text";
-        span.textContent = t.text;
-        if(t.done) span.classList.add("done");
-
-        const del = document.createElement("button");
-        del.type = "button";
-        del.className = "todo-del";
-        del.textContent = "×";
-        del.addEventListener("click", () => {
-          const next = loadTodos().filter((_, i) => i !== idx);
-          saveTodos(next);
-          render();
-        });
-
-        li.appendChild(cb);
-        li.appendChild(span);
-        li.appendChild(del);
-        list.appendChild(li);
-      });
-    }
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const text = (input.value || "").trim();
-      if(!text) return;
-      const todos = loadTodos();
-      todos.unshift({ text, done: false, ts: Date.now() });
-      saveTodos(todos);
-      input.value = "";
-      render();
+  function sortByDue(todos){
+    // due asc; items with no due go last; stable-ish by ts
+    return [...todos].sort((a,b) => {
+      const ad = a.due || "9999-12-31";
+      const bd = b.due || "9999-12-31";
+      if(ad !== bd) return ad < bd ? -1 : 1;
+      return (b.ts || 0) - (a.ts || 0);
     });
+  }
 
-    clearDoneBtn.addEventListener("click", () => {
-      const next = loadTodos().filter(t => !t.done);
-      saveTodos(next);
-      render();
+  function setFilter(filter){
+    activeFilter = filter;
+    filterBtns.forEach(b => {
+      const on = b.dataset.filter === filter;
+      b.setAttribute("aria-pressed", on ? "true" : "false");
     });
-
     render();
-  </script>
+  }
+
+  function render(){
+    const todos = sortByDue(applyFilter(loadTodos()));
+    list.innerHTML = "";
+
+    todos.forEach((t) => {
+      const li = document.createElement("li");
+      li.className = "todo-item";
+
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.checked = !!t.done;
+      cb.addEventListener("change", () => {
+        const all = loadTodos();
+        const idx = all.findIndex(x => x.id === t.id);
+        if(idx >= 0){
+          all[idx].done = cb.checked;
+          saveTodos(all);
+          render();
+        }
+      });
+
+      const text = document.createElement("span");
+      text.className = "todo-text";
+      text.textContent = t.text;
+
+      if(t.done) text.classList.add("done");
+      if(isOverdue(t)) text.classList.add("overdue");
+
+      const dueTag = document.createElement("span");
+      dueTag.className = "todo-due-tag";
+      dueTag.textContent = t.due ? t.due : "";
+
+      const odTag = document.createElement("span");
+      odTag.className = "todo-od-tag";
+      odTag.textContent = isOverdue(t) ? "overdue" : "";
+      if(!isOverdue(t)) odTag.hidden = true;
+
+      const del = document.createElement("button");
+      del.type = "button";
+      del.className = "todo-del";
+      del.textContent = "×";
+      del.addEventListener("click", () => {
+        const next = loadTodos().filter(x => x.id !== t.id);
+        saveTodos(next);
+        render();
+      });
+
+      li.appendChild(cb);
+      li.appendChild(text);
+      if(t.due) li.appendChild(dueTag);
+      li.appendChild(odTag);
+      li.appendChild(del);
+
+      list.appendChild(li);
+    });
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const text = (input.value || "").trim();
+    if(!text) return;
+
+    const todos = loadTodos();
+    todos.unshift({
+      id: crypto?.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random(),
+      text,
+      done: false,
+      due: due.value || "",
+      ts: Date.now()
+    });
+
+    saveTodos(todos);
+    input.value = "";
+    due.value = "";
+    render();
+  });
+
+  clearDoneBtn.addEventListener("click", () => {
+    const next = loadTodos().filter(t => !t.done);
+    saveTodos(next);
+    render();
+  });
+
+  filterBtns.forEach(b => b.addEventListener("click", () => setFilter(b.dataset.filter)));
+
+  setFilter("all");
+</script>
 </body>
 </html>
