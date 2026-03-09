@@ -1,1 +1,103 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>blog</title>
+  <meta name="description" content="naplózás" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+  <!-- LOCK SCREEN -->
+  <div id="lock" class="lock">
+    <div class="lockbox">
+      <div class="meta">locked</div>
+      <p class="muted">enter password</p>
+      <input id="pw" class="todo-input" type="password" placeholder="password..." />
+      <button id="unlock" class="todo-btn" type="button">unlock</button>
+      <p id="err" class="muted" style="display:none;">wrong password</p>
+    </div>
+  </div>
+
+  <!-- PROTECTED CONTENT -->
+  <div id="protected" style="display:none;">
+
+    <div class="container">
+      <header>
+        <div class="brand">
+          <h1><a href="index.html">JB's blog</a></h1>
+          <p class="tagline"></p>
+        </div>
+        <nav aria-label="Fő navigáció">
+          <a class="navlink" href="index.html" aria-current="page">entries</a>
+          <a class="navlink" href="photos.html">photos</a>
+          <a class="navlink" href="lists.html">lists</a>
+          <a class="navlink" href="about.html">cv</a>
+          <a class="navlink" href="planner.html">planner</a>
+        </nav>
+      </header>
+
+      <section class="card">
+        <div class="meta">álmaim</div>
+        <h2 style="margin:.2rem 0 0;font-family:var(--mono);"></h2>
+      </section>
+
+      <hr />
+
+      <article class="card">
+
+      <p>2026.03.09. - kb. dolog miatt izgulok. megyek kínába av springgel. valamiért azt írom, hogy ez 5 év börtön nekem. erre a TSZ rám ír, hogy tudja hogy frog problémáim vannak. amit nem teljesen értek, mert azthiszem nincs. a másik, hogy egy közösségi színházba készülök. hirtelen az előadáson találom magam. már tart az előadás én próbálom memorizálni a sztorit. nagyon nehezen megy mert egy katyvasz a szövegkönyv. nincs tördelve a leírás és párbeszéd. egy massza szöveg. AV is készül. aztán mondják, hogy hamarosan én jövök. hátrább megyek és látod egy kopasz szimpatikus faszit akinek a feje szépen beleolvad és egy iskolapi padba. a teste már nem látszik csak a feje. mit nézel? te normálisan nézel ki. aztán észrevesszük hogy nem vagyunk kitakarva. látszunk az előadásban. kimegyünk. kiderül, hogy ő is dolgozott az avsnél. lassan én jövök. szentkirályi alexndra is játszik a darabban. felébredek.  </p>
+      <p class="meta"><a href="index.html">← back</a></p>
+
+      <footer>
+        <div>© <span id="y"></span> JB · <span class="code">naplózások</span></div>
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById('y').textContent = new Date().getFullYear();
+    </script>
+
+  </div>
+
+  <script>
+    // ---- PASSWORD PROTECTION (weak, client-side) ----
+    const PASSWORD = "blog2026";
+
+    const lock = document.getElementById("lock");
+    const pw = document.getElementById("pw");
+    const btn = document.getElementById("unlock");
+    const err = document.getElementById("err");
+    const content = document.getElementById("protected");
+
+    const KEY = "jb_lock_ok_" + location.pathname;
+
+    function openIt(){
+      lock.style.display = "none";
+      content.style.display = "block";
+      localStorage.setItem(KEY, "1");
+    }
+
+    function tryUnlock(){
+      if (pw.value === PASSWORD){
+        err.style.display = "none";
+        openIt();
+      } else {
+        err.style.display = "block";
+        pw.value = "";
+        pw.focus();
+      }
+    }
+
+    if (localStorage.getItem(KEY) === "1") openIt();
+
+    btn.addEventListener("click", tryUnlock);
+    pw.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") tryUnlock();
+    });
+
+    pw.focus();
+  </script>
+</body>
+</html>
