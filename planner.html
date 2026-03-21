@@ -45,16 +45,117 @@
         </div>
       </section>
 
-      <!-- TASKS (TRELLO) -->
-  <section>
-  <div class="meta">tasks (trello)</div>
+      <!-- TASKS (TRELLO API READ-ONLY) -->
+      <section>
+        <div class="meta">tasks (trello)</div>
 
-  <p class="muted">
-    <a href="https://trello.com/b/2HJwHT1K/jbtasks" target="_blank" rel="noopener">open in trello</a>
-  </p>
+        <p class="muted">
+          <a href="https://trello.com/b/2HJwHT1K/jbtasks" target="_blank" rel="noopener">open in trello</a>
+        </p>
 
-  <blockquote class="trello-board-compact">
-    <a href="https://trello.com/b/2HJwHT1K/jbtasks">Trello Board</a>
-  </blockquote>
-  <script src="https://p.trellocdn.com/embed.min.js"></script>
-</section>
+        <div id="trelloTasks" class="trello-view">
+          <div class="muted">loading…</div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div>© <span id="y"></span> JB · <span class="code">planner</span></div>
+    </footer>
+  </div>
+
+  <script>
+    // year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // --- Trello read-only render (public board) ---
+    const TRELLO_KEY = "3197bc9255b911c5cf04461645b38216";
+    const BOARD_SHORTLINK = "2HJwHT1K"; // /b/2HJwHT1K/jbtasks
+
+    function fmtDue(iso){
+      if(!iso) return "";
+      const d = new Date(iso);
+      if (isNaN(d)) return "";
+      return d.toISOString().slice(0,10);
+    }
+
+    async function loadTrello(){
+      const el = document.getElementById("trelloTasks");
+
+      const url =
+        `https://api.trello.com/1/boards/${BOARD_SHORTLINK}` +
+        `?key=${encodeURIComponent(TRELLO_KEY)}` +
+        `&fields=name,url` +
+        `&lists=open&list_fields=name,pos` +
+        `&cards=open&card_fields=name,due,idList,shortUrl,pos`;
+
+      const res = await fetch(url);
+      if(!res.ok){
+        el.innerHTML = `<div class="muted">Trello load failed (${res.status}). Make sure the board is public.</div>`;
+        return;
+      }
+      const data = await res.json();
+
+      const lists = (data.lists || []).sort((a,b)=>a.pos-b.pos);
+      const cards = (data.cards || []).sort((a,b)=>a.pos-b.pos);
+
+      // show only these lists (case-insensitive)
+      const wanted = new Set(["todo","doing","done"]);
+
+      const cardsByList = new Map();
+      for (const l of lists){
+        if(wanted.has((l.name||"").toLowerCase())) cardsByList.set(l.id, {list:l, cards:[]});
+      }
+      for (const c of cards){
+        if(cardsByList.has(c.idList)) cardsByList.get(c.idList).cards.push(c);
+      }
+
+      el.innerHTML = "";
+      for (const {list: l, cards: cl} of cardsByList.values()){
+        const block = document.createElement("div");
+        block.className = "trello-list";
+
+        const h = document.createElement("div");
+        h.className = "trello-title";
+        h.textContent = l.name;
+        block.appendChild(h);
+
+        const ul = document.createElement("ul");
+        ul.className = "trello-cards";
+
+        if(cl.length === 0){
+          const li = document.createElement("li");
+          li.className = "muted";
+          li.textContent = "—";
+          ul.appendChild(li);
+        } else {
+          for (const c of cl){
+            const li = document.createElement("li");
+            li.className = "trello-card";
+
+            const a = document.createElement("a");
+            a.href = c.shortUrl;
+            a.target = "_blank";
+            a.rel = "noopener";
+            a.textContent = c.name;
+
+            const due = fmtDue(c.due);
+            const meta = document.createElement("span");
+            meta.className = "trello-due";
+            meta.textContent = due ? ` · ${due}` : "";
+
+            li.appendChild(a);
+            li.appendChild(meta);
+            ul.appendChild(li);
+          }
+        }
+
+        block.appendChild(ul);
+        el.appendChild(block);
+      }
+    }
+
+    loadTrello();
+  </script>
+</body>
+</html>
