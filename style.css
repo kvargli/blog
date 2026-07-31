@@ -410,3 +410,36 @@ footer{
   font-family: var(--mono);
   font-size: .85rem;
 }
+
+/* Lemezborító rács beállításai */
+.record-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Pontosan 4 egyenlő oszlop */
+  gap: 20px; /* Távolság a borítók között (ezt módosíthatod ízlés szerint) */
+  margin: 20px 0;
+}
+
+/* Maguk a lemezborító képek formázása */
+.record-grid img {
+  width: 100%; /* Kitölti az oszlopot */
+  height: auto;
+  aspect-ratio: 1 / 1; /* Lemezborítókhoz illően tökéletes négyzetre kényszeríti */
+  object-fit: cover; /* Ha a kép nem pont négyzet, akkor is levágja szépen, hogy kitöltse a teret */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15); /* Ad egy kis árnyékot, hogy olyan legyen, mint egy igazi bakelit borító */
+  border-radius: 4px; /* Opcionális: picit lekerekíti a sarkokat */
+}
+
+/* MOBIL NÉZET: Ha valaki telefonról nézi, a 4 oszlop túl pici lenne. 
+   Ezért kisebb képernyőn átváltunk 2 oszlopra. */
+@media (max-width: 768px) {
+  .record-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Nagyon pici telefonon pedig 1 oszlopra */
+@media (max-width: 480px) {
+  .record-grid {
+    grid-template-columns: 1fr;
+  }
+}
